@@ -1,0 +1,55 @@
+<app-map></app-map>
+<div class="container">
+  <div class="form-group">
+    <select
+      class="form-control"
+      id="sortBy"
+      (change)="sortReports($event.target.value)"
+    >
+      <option>Sort By</option>
+      <option>Location</option>
+      <option>Person Reported</option>
+      <option>Date Of Visit</option>
+    </select>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Person Reported</th>
+        <th scope="col">Date of visit</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let report of reports">
+      <tr>
+        <td>{{ report.data.location }}</td>
+        <td>{{ report.data.personReported }}</td>
+        <td>{{ report.data.dateOfVisit }} - {{ report.data.time }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="moreInfo(report.data.personReported)"
+          >
+            More Info
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteReport(report.data)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button
+    id="#add-report"
+    type="button"
+    class="btn btn-primary"
+    (click)="addForm($event)"
+  >
+    Create Covid Report
+  </button>
+</div>
